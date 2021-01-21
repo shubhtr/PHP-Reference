@@ -12,6 +12,27 @@
 
 ### Variable-handling Functions
 
+### Ternary Operator
+
+    (Condition) ? (Statement1) : (Statement2);
+
+<ul>
+<li><b>Condition</b>: It is the expression to be evaluated which returns a boolean value.</li>
+<li><b>Statement 1</b>: it is the statement to be executed if the condition results in a true state.</li>
+<li><b>Statement 2</b>: It is the statement to be executed if the condition results in a false state.</li>
+</ul>
+
+Example
+
+    <?php
+    $marks=40;
+    print ($marks>=40) ? "pass" : "Fail";
+    ?>
+
+Output
+
+    pass
+
 ### Constants
 
     define(name, value, true/false)
