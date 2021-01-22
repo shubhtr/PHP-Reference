@@ -33,6 +33,10 @@ Output
 
     pass
 
+### Modules
+
+    $ php -m
+
 ### Constants
 
     define(name, value, true/false)
@@ -66,7 +70,24 @@ Constant                | Description
 
 ## throw - try - catch - Exception
 
-## class/objects
+# PHP OOP
+
+OOP - Object Oriented Programming
+<ul>
+<li>faster and easier to execute</li>
+<li>provides a clear structure for the programs</li>
+<li>helps keep the PHP code DRY, and makes the code easier to maintain, modify and debug</li>
+<li>makes its possible to create fully resuable applications with less code and shorter development time</li>
+</ul>
+
+DRY - "Don't Repeat Yourself" - reducing the repetition of code. Extract the logic that is common to the application, and place it in a single place and resuse them instead of repeating it.
+
+## Class and Object
+
+Class is a template for objects.
+
+Object is an instance of a class. When the individual objects are created, they inherit all the properties and behaviors from the class, but each object will have different values for the properties.
+
 
 ### class
 
@@ -132,7 +153,72 @@ Objects of a class are created using the `new` keyword. Each object has all the 
 
 `$this` keyword refers to the current object, and is only available inside methods.
 
+    <?php
+    class Fruit {
+    public $name;
+    }
+    $apple = new Fruit();
+    ?>
+
+### change a property
+
+(1) inside the class - by adding a set_name() method and use $this
+
+    <?php
+    class Fruit {
+        public $name;
+        function set_name($name) {
+            $this->name = $name;
+        }
+    }
+    $apple = new Fruit();
+    $apple->set_name("Apple");
+    ?>
+
+(2) outside the class - by directly changing the property value
+
+    <?php
+    class Fruit {
+        public $name;
+    }
+    $apple = new Fruit();
+    $apple->name = "Apple";
+    ?>
+
+### instanceof 
+
+use the `instanceof` keyword to check if an object belongs to a specific class
+
+    <?php
+    $apple = new Fruit();
+    var_dump($apple instanceof Fruit);
+    ?>
+
+### Constructor
+
+`__construct()` - PHP will automatically call this function when you create an object from a class.
+
+    ```php
+    <?php
+    class Fruit {
+        public $name;
+        public $color;
+
+        function __construct($name) {
+            $this->name = $name;
+        }
+        function get_name() {
+            return $this->name;
+        }
+    }
+
+    $apple = new Fruit("Apple");
+    echo $apple->get_name();
+    ?>
+    ```
+    
 ### private
+
 ### public
 
 
