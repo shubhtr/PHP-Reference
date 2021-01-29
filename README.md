@@ -12,6 +12,14 @@
 
 ### Variable-handling Functions
 
+## For
+
+## If-Else
+
+## While
+
+## Switch
+
 ### Ternary Operator
 
     (Condition) ? (Statement1) : (Statement2);
@@ -69,6 +77,11 @@ Constant                | Description
 ## function
 
 ## throw - try - catch - Exception
+
+# Error reporting 
+
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
 
 # PHP OOP
 
@@ -216,6 +229,26 @@ use the `instanceof` keyword to check if an object belongs to a specific class
     echo $apple->get_name();
     ?>
     ```
+
+### call parent constructor in child class
+
+a call to parent::__construct() within the child constructor is required
+
+    <?php
+    class grandpa{
+        public function __construct(){
+            echo "I am in Tutorials Point"."\n";
+        }
+    }
+    class papa extends grandpa{
+        public function __construct(){
+            parent::__construct();
+            echo "I am not in Tutorials Point";
+        }
+    }
+    $obj = new papa();
+    ?>
+
     
 ### private
 
@@ -257,6 +290,78 @@ x+ | <b>Creates a new file for read/write.</b> Returns FALSE and an error if fil
         //some code to be executed...
         fclose($myfile);
     ?>
+
+## Keywords
+
+PHP has a set of keywords that are reserved words which cannot be used as function names, class names or method names. Prior to PHP 7, these keywords could not be used as class property names either:
+
+Keyword             |   Description
+---                 |   ---
+abstract            |	Declare a class as abstract
+and	                |   A logical operator
+as	                |   Used in the foreach loop
+break               |	Break out of loops and switch statements
+callable	        |   A data type which can be executed as a function
+case	            |   Used in the switch conditional
+catch	            |   Used in the try..catch statement
+class	            |   Declare a class
+clone	            |   Create a copy of an object
+const	            |   Define a class constant
+continue            |   Jump to the next iteration of a loop
+declare	            |   Set directives for a block of code
+default	            |   Used in the switch statement
+do	                |   Create a do...while loop
+echo                |	Output text
+else                |	Used in conditional statements
+elseif              |	Used in conditional statements
+empty	            |   Check if an expression is empty
+enddeclare          |	End a declare block
+endfor	            |   End a for block
+endforeach	        |   End a foreach block
+endif	            |   End an if or elseif block
+endswitch           |	End a switch block
+endwhile            |	End a while block
+extends	            |   Extends a class or interface
+final	            |   Declare a class, property or method as final
+finally	            |   Used in the try...catch statement
+fn	                |   Declare an arrow function
+for	                |   Create a for loop
+foreach	            |   Create a foreach loop
+function            |	Create a function
+global	            |   Import variables from the global scope
+goto	            |   Jump to a line of code
+if	                |   Create a conditional statement
+implements          |   Implement an interface
+include	            |   Embed code from another file
+include_once        |	Embed code from another file
+instanceof	        |   Test an object's class
+insteadof	        |   Resolve conflicts with traits
+interface	        |   Declare an interface
+isset	            |   Check if a variable exists and is not null
+list	            |   Assigns array elements into variables
+namespace	        |   Declares a namespace
+new	                |   Creates an object
+or	                |   A logical operator
+print               |	Output text
+private	            |   Declare a property, method or constant as private
+protected	        |   Declare a property, method or constant as protected
+public	            |   Declare a property, method or constant as public
+require	            |   Embed code from another file
+require_once	    |   Embed code from another file
+return	            |   Exit a function and return a value
+static	            |   Declare a property or method as static
+switch	            |   Create a switch block
+throw	            |   Throw an exception
+trait	            |   Declare a trait
+try	                |   Create a try...catch structure
+unset               |	Delete a variable or array element
+use	                |   Use a namespace <br> <ol><li>It tells a class to inherit a trait and,</li><li>it gives an alias to a namespace.</li></ol>
+var	                |   Declare a variable
+while               |	Create a while loop or end a do...while loop
+xor	                |   A logical operator
+yield               |	Used in generator functions
+yield from	        |   Used in generator functions
+
 
 ## References
 * https://www.w3schools.com/php/
