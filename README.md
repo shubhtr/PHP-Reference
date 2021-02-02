@@ -362,6 +362,39 @@ xor	                |   A logical operator
 yield               |	Used in generator functions
 yield from	        |   Used in generator functions
 
+## Format a number with leading zeros 
+
+sprintf()
+substr()
+
+<ins>Example 1</ins>
+
+    <?php 
+        $var = 1234567; 
+        echo sprintf('%08d', $var); 
+    ?> 
+
+<ins>Example 2</ins> - negative numbers with leading zeroes
+
+    <?php 
+        $var1 = -10; 
+        $var2 = 10; 
+        echo sprintf('%04d', $var1) . "\n"; 
+        echo sprintf('%04d', $var2); 
+    ?> 
+
+<ins>Example 3</ins> - using substr() function
+
+    <?php 
+        $num = 123; 
+        $str_length = 4; 
+        
+        // Left padding if number < $str_length 
+        $str = substr("0000{$num}", -$str_length); 
+        echo sprintf($str); 
+    ?> 
+
+
 
 ## References
 * https://www.w3schools.com/php/
