@@ -68,6 +68,60 @@ Constant                | Description
 
 ## namespace
 
+I.
+With the setup you have here. You would have to execute the following to fire that function.
+
+(new MyFunctions\basic)->say_hello("Bob");
+(I dont recommend this method, it creates an object for no reason.)
+
+What I'm assuming you wanted was:
+
+namespace MyFunctions;
+
+function say_hello($a)
+{
+    echo "Hello, $a";
+}
+at which point you could use
+
+// this gives you 'Hello, Bob'
+MyFunctions\say_hello("Bob");
+
+II.
+ClassNames are considered relative to the current namespace unless they start with a \
+
+This means that inside the MicrosoftAzure\Storage namespace you can use the relative namespace for class.
+
+If you want to call a class from a different namespace you should call fully-qualified name for it like
+
+    $action = \MicrosoftAzure\WhereEver\MicroGrid::GetParameter('action');
+or use the name space or unique class with fully-qualified name
+
+    use \MicrosoftAzure\WhereEver;
+or
+
+    use \MicrosoftAzure\WhereEver\MicroGrid;
+then:
+
+    $action = MicroGrid::GetParameter('action');
+Edited to make it clear
+
+namespaces allow us to avoid naming collisions and to alias long names caused by avoiding naming collisions.
+
+it depends to your autoloader for a simple example I create a new project and make this autoloader in the index.php located at root directory
+
+function __autoload($className){
+    //if it's a full name with windows style slashes correct the path
+    $file_name = str_replace('\\', '/', $className);
+    require_once("vender/src/".$file_name.".php");
+}
+when I call $date = new \App\Utility\Date(); autoloader will require this file:
+
+verdor/src/App/Utility/Date.php
+and in Date.php I used this name space namespace App\Utility;
+
+
+
 ## require_once
 
 ## dirname(__FILE__)
@@ -394,7 +448,117 @@ substr()
         echo sprintf($str); 
     ?> 
 
+str_pad 
 
+    str_pad($value, 8, '0', STR_PAD_LEFT);
+
+<ins>Note:</ins> Not an option with negative numbers.
+
+## destroy an object
+
+You're looking for unset().
+
+But take into account that you can't explicitly destroy an object.
+
+It will stay there, however if you unset the object and your script pushes PHP to the memory limits the objects not needed will be garbage collected. I would go with unset() (as opposed to setting it to null) as it seems to have better performance (not tested but documented on one of the comments from the PHP official manual).
+
+That said, do keep in mind that PHP always destroys the objects as soon as the page is served. So this should only be needed on really long loops and/or heavy intensive pages.
+
+
+# php Command Line options
+
+Example: 
+
+    $ php -m
+
+Option | Description 
+--- | ---
+-a                      |   Run interactively
+-c <`path`>\|<`file`>   |   Look for php.ini file in this directory
+-n                      |   No php.ini file will be used
+-d foo[`=bar`]          |   Define INI entry foo with value 'bar'
+-e                      |   Generate extended information for debugger/profiler
+-f <`file`>             |   Parse and execute <`file`>.
+-h                      |   This help
+-i                      |   PHP information
+-l                      |   Syntax check only (lint)
+-m                      |   Show compiled in modules
+-r <`code`>             |   Run PHP <`code`> without using script tags <?..?>
+-B <`begin_code`>       |   Run PHP <`begin_code`> before processing input lines
+-R <`code`>             |   Run PHP <`code`> for every input line
+-F <`file`>             |   Parse and execute <`file`> for every input line
+-E <`end_code`>         |   Run PHP <`end_code`> after processing all input lines
+-H                      |   Hide any passed arguments from external tools.
+-S <`addr`>:<`port`>    |   Run with built-in web server.
+-t <`docroot`>          |   Specify document root <`docroot`> for built-in web server.
+-s                      |   Output HTML syntax highlighted source.
+-v                      |   Version number
+-w                      |   Output source with stripped comments and whitespace.
+-z <`file`>             |   Load Zend extension <`file`>.
+&nbsp;                  |   &nbsp;
+args...                 |   Arguments passed to script. Use -- args when first argument starts with - or script is read from stdin
+&nbsp;                  |   &nbsp;
+--ini                   |   Show configuration file names
+&nbsp;                  |   &nbsp;
+--rf <`name`>           |   Show information about function <`name`>.
+--rc <`name`>           |   Show information about class <`name`>.
+--re <`name`>           |   Show information about extension <`name`>.
+--rz <`name`>           |   Show information about Zend extension <`name`>.
+--ri <`name`>           |   Show configuration for extension <`name`>.
+
+# Misc functions
+
+Function | Description
+--- | ---
+filter_input | get the specific external variable by name and filter it
+
+# Misc 2
+
+    <<< EOF
+
+It is called `heredoc`.
+
+# PHP Associative Arrays
+
+Associative arrays are arrays that use named keys that you assign to them.
+
+There are two ways to create an associative array: 
+
+    $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+or:
+
+    $age['Peter'] = "35";
+    $age['Ben'] = "37";
+    $age['Joe'] = "43";
+
+The named keys can then be used in a script:
+
+Example
+    <?php
+    $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+    echo "Peter is " . $age['Peter'] . " years old.";
+    ?>
+
+Loop Through an Associative Array
+
+To loop through and print all the values of an associative array, you could use a foreach loop, like this:
+
+Example
+
+    <?php
+    $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+    foreach($age as $x => $x_value) {
+    echo "Key=" . $x . ", Value=" . $x_value;
+    echo "<br>";
+    }
+    ?>
+
+<br><br><br><br><br><br><br><br>
 
 ## References
 * https://www.w3schools.com/php/
+* https://www.stackoverflow.com/
+* https://www.php.net/manual/en/features.commandline.options.php
+* https://www.php.net/manual/en/language.types.string.php
