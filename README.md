@@ -1,4 +1,7 @@
 # PHP Reference
+## by Shubhrendu Tripathi
+
+<br><br>
 
 ## Variables and Constants
 
@@ -12,11 +15,149 @@
 
 ### Variable-handling Functions
 
-## For
-
 ## If-Else
 
-## While
+# Loops
+
+In PHP, we have the following loop types:
+
+while - loops through a block of code as long as the specified condition is true
+do...while - loops through a block of code once, and then repeats the loop as long as the specified condition is true
+for - loops through a block of code a specified number of times
+foreach - loops through a block of code for each element in an array
+
+## while
+
+Loops through a block of code as long as the specified condition is true
+
+Example - display numbers from 1 to 5:
+
+    <?php
+    $x = 1;
+
+    while($x <= 5) {
+    echo "The number is: $x <br>";
+    $x++;
+    }
+    ?>
+
+Example - counts to 100 by tens:
+
+    <?php
+    $x = 0;
+
+    while($x <= 100) {
+    echo "The number is: $x <br>";
+    $x+=10;
+    }
+    ?>
+
+
+
+## do while
+
+Loops through a block of code once, and then repeats the loop as long as the specified condition is true.
+
+Example:
+
+    <?php
+    $x = 1;
+
+    do {
+    echo "The number is: $x <br>";
+    $x++;
+    } while ($x <= 5);
+    ?>
+
+Example 2:
+
+    <?php
+    $x = 6;
+
+    do {
+    echo "The number is: $x <br>";
+    $x++;
+    } while ($x <= 5);
+    ?>
+
+## for
+
+Loops through a block of code a specified number of times.
+
+Example: 
+
+    <?php
+    for ($x = 0; $x <= 10; $x++) {
+    echo "The number is: $x <br>";
+    }
+    ?>
+
+Example - count by tens:
+
+    <?php
+    for ($x = 0; $x <= 100; $x+=10) {
+    echo "The number is: $x <br>";
+    }
+    ?>
+
+## foreach
+
+    foreach ($array as $value) {
+        code to be executed;
+    }
+
+Example - values:
+
+    <?php
+    $colors = array("red", "green", "blue", "yellow");
+
+    foreach ($colors as $value) {
+    echo "$value <br>";
+    }
+    ?>
+
+Example - key,value:
+
+    <?php
+    $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+    foreach($age as $x => $val) {
+        echo "$x = $val<br>";
+    }
+    ?>
+
+## break/continue
+
+### break
+
+<ul>
+<li>used to "jump out" of a switch statement.</li>
+<li>used to jump out of a loop</li>
+</ul>
+
+    <?php
+    for ($x = 0; $x < 10; $x++) {
+    if ($x == 4) {
+        break;
+    }
+    echo "The number is: $x <br>";
+    }
+    ?>
+
+### continue
+
+<ul>
+<li>breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.</li>
+</ul>
+
+    <?php
+    for ($x = 0; $x < 10; $x++) {
+    if ($x == 4) {
+        continue;
+    }
+    echo "The number is: $x <br>";
+    }
+    ?>
 
 ## Switch
 
@@ -47,7 +188,52 @@ Output
 
 ### Constants
 
+Constants are like variables except that once they are defined they cannot be changed or undefined.
+
     define(name, value, true/false)
+
+    name: Specifies the name of the constant
+    value: Specifies the value of the constant
+    case-insensitive: Specifies whether the constant name should be case-insensitive. Default is false
+
+A class constant is declared inside a class with the const keyword.
+
+    <?php
+    class Goodbye {
+    const LEAVING_MESSAGE = "Thank you for visiting W3Schools.com!";
+    }
+
+    echo Goodbye::LEAVING_MESSAGE;
+    ?>
+
+Constant Arrays
+
+Create an Array constant using the define() function.
+
+    <?php
+    define("cars", [
+    "Alfa Romeo",
+    "BMW",
+    "Toyota"
+    ]);
+    echo cars[0];
+    ?>
+
+### exit()
+
+    <?php
+    $site = "https://www.w3schools.com/";
+    fopen($site,"r") or exit("Unable to connect to $site");
+    ?>
+
+### die()
+
+alias for exit() function
+
+    <?php
+    $site = "https://www.w3schools.com/";
+    fopen($site,"r") or die("Unable to connect to $site");
+    ?>
 
 #### Default PHP constants
 
@@ -555,6 +741,24 @@ Example
     }
     ?>
 
+# good shortcuts
+
+    <?= CodeIgniter\CodeIgniter::CI_VERSION ?>
+
+equivalent to
+
+    <?php echo CodeIgniter\CodeIgniter::CI_VERSION ?>
+
+### misc
+
+You don't typically need to do this, since PHP will coerce the type for you in most circumstances. For situations where you do want to explicitly convert the type, cast it:
+
+    $num = "3.14";
+    $int = (int)$num;
+    $float = (float)$num;
+
+
+
 <br><br><br><br><br><br><br><br>
 
 ## References
@@ -562,3 +766,7 @@ Example
 * https://www.stackoverflow.com/
 * https://www.php.net/manual/en/features.commandline.options.php
 * https://www.php.net/manual/en/language.types.string.php
+* https://www.w3schools.com/php/php_file_open.asp
+* https://www.w3schools.com/php/func_math_mt_rand.asp
+* https://www.w3schools.com/php/php_looping.asp
+* https://www.w3schools.com/html/html_forms.asp
